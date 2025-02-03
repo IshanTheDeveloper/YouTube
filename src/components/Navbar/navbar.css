@@ -1,0 +1,23 @@
+.navbar-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1vh;
+}
+.navbar {
+  display: flex;
+  margin: 5px;
+  gap: 1.2vw;
+  margin-right: 2vw;
+}
+.navbar a {
+  text-decoration: none;
+  margin: 0.5rem;
+  background-color: rgb(128, 128, 128, 0.2);
+  color: black;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  &:hover {
+    background-color: black;
+    color: white;
+  }
+}

@@ -121,3 +121,6 @@
   background-color: rgb(2, 2, 2, 0.9);
   border: none;
 }
+.props-handling {
+  visibility: hidden;
+}

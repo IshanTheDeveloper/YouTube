@@ -1,4 +1,5 @@
 import "./header.css";
+import { Link } from "react-router-dom";
 function Header() {
   return (
     <div className="header-container">
@@ -19,19 +20,21 @@ function Header() {
           />
         </button>
       </div>
-      <div className="sign-in">
-        <img
-          src="https://cdn-icons-png.flaticon.com/128/2311/2311524.png"
-          alt=""
-        />
-        <div className="sign-in-button">
+      <Link to="/login">
+        <div className="sign-in">
           <img
-            src="https://cdn-icons-png.flaticon.com/128/1144/1144760.png"
+            src="https://cdn-icons-png.flaticon.com/128/2311/2311524.png"
             alt=""
           />
-          <p>Sign in</p>
+          <div className="sign-in-button">
+            <img
+              src="https://cdn-icons-png.flaticon.com/128/1144/1144760.png"
+              alt=""
+            />
+            <p>Sign in</p>
+          </div>
         </div>
-      </div>
+      </Link>
     </div>
   );
 }

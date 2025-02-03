@@ -1,5 +1,22 @@
+import { useNavigate } from "react-router-dom";
+import AfterHeader from "../AfterHeader/afterheader";
 import "./login.css";
+import { useState } from "react";
+
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  function handleClick() {
+    if (email.trim() === "" || password.trim() === "") {
+      alert("Please fill all the empty spaces");
+    } else {
+      localStorage.setItem("profileName", email); // Save the email in localStorage
+      navigate("/home-page");
+    }
+  }
+
   return (
     <div className="login-page">
       <div className="login-container">
@@ -15,56 +32,39 @@ function Login() {
           </p>
         </div>
         <div className="login-details">
-          <input type="text" name="" id="" placeholder="Email or phone" />
+          <input
+            type="text"
+            placeholder="Email or phone"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
           <h3>Forgot email?</h3>
-          <input type="password" name="" id="" placeholder="Password" />
-          <h3>Forgot email?</h3>
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <h3>Forgot password?</h3>
           <p>
-            Not your computer? Use Guest mode to sign in privately.{" "}
+            Not your computer? Use Guest mode to sign in privately.
             <a href="https://support.google.com/chrome/answer/6130773?hl=en">
-              {" "}
               Learn more about using Guest mode
-            </a>{" "}
+            </a>
           </p>
-
           <div className="login-submit-button">
-            <button>Login</button>
+            <button onClick={handleClick}>Login</button>
           </div>
         </div>
       </div>
+
       <div className="login-page-help">
         <div className="language-select">
           <select>
             <option value="en">English (United States)</option>
             <option value="es">Spanish</option>
             <option value="fr">French</option>
-            <option value="de">German</option>
-            <option value="zh">Chinese</option>
-            <option value="hi">Hindi</option>
-            <option value="ar">Arabic</option>
-            <option value="pt">Portuguese</option>
-            <option value="ru">Russian</option>
-            <option value="ja">Japanese</option>
-            <option value="ko">Korean</option>
-            <option value="it">Italian</option>
-            <option value="nl">Dutch</option>
-            <option value="tr">Turkish</option>
-            <option value="sv">Swedish</option>
-            <option value="pl">Polish</option>
-            <option value="uk">Ukrainian</option>
-            <option value="th">Thai</option>
-            <option value="vi">Vietnamese</option>
-            <option value="he">Hebrew</option>
-            <option value="id">Indonesian</option>
-            <option value="cs">Czech</option>
-            <option value="ro">Romanian</option>
-            <option value="hu">Hungarian</option>
-            <option value="el">Greek</option>
-            <option value="da">Danish</option>
-            <option value="fi">Finnish</option>
-            <option value="no">Norwegian</option>
-            <option value="bg">Bulgarian</option>
-            <option value="ms">Malay</option>
+            {/* Add more languages as needed */}
           </select>
         </div>
         <div className="help-items">
@@ -73,7 +73,12 @@ function Login() {
           <p>Terms</p>
         </div>
       </div>
+
+      <div className="props-handling">
+        <AfterHeader name={email} />
+      </div>
     </div>
   );
 }
+
 export default Login;
