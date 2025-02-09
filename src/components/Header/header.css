@@ -6,6 +6,7 @@
 .header-container img {
   width: 1.5vw;
 }
+
 .input-search {
   display: flex;
   justify-content: center;
@@ -60,6 +61,7 @@
   gap: 2vw;
   position: relative;
   left: 22vw;
+  margin-top: 1vh;
 }
 .sign-in-button {
   display: flex;

@@ -1,13 +1,17 @@
 .navbar-container {
   display: flex;
   justify-content: flex-end;
-  margin-top: 1vh;
+  margin-top: 8vh;
+  position: fixed;
+  left: 31vh;
+  background-color: white;
+  z-index: 2;
 }
 .navbar {
   display: flex;
   margin: 5px;
-  gap: 1.2vw;
-  margin-right: 2vw;
+  gap: 0.8vw;
+  margin-right: 5vw;
 }
 .navbar a {
   text-decoration: none;

@@ -3,8 +3,8 @@ function Navbar() {
   return (
     <div className="navbar-container">
       <div className="navbar">
-        <a href="">All Categories</a>
-        <a href="">Comedy Clubs</a>
+        <a href="all">All Categories</a>
+        <a href="comedy">Comedy Clubs</a>
         <a href="">Science Fiction</a>
         <a href="">Movies</a>
         <a href="">Gaming</a>

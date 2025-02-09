@@ -17,12 +17,15 @@ body {
   display: flex;
   flex-direction: column;
   padding-top: 10px;
+  z-index: 10;
+  background-color: white;
 }
 
 /* Scrollable Content - Starts from 10vh */
 .sidebar-content {
   margin-top: 0.5vh;
   overflow-y: auto;
+  background-color: white;
   max-height: calc(100vh - 10vh); /* Prevents overflow */
   /* Custom Scrollbar (existing styles) */
   scrollbar-width: thin; /* For Firefox */
@@ -32,8 +35,12 @@ body {
   }
 }
 .sidebar.closed {
-  width: 75px;
+  width: 90px;
 }
+.sidebarEscape.closed {
+  width: 5px;
+}
+
 .menu-button {
   background-color: transparent;
   border: none;

@@ -13,7 +13,7 @@ function Login() {
       alert("Please fill all the empty spaces");
     } else {
       localStorage.setItem("profileName", email); // Save the email in localStorage
-      navigate("/home-page");
+      navigate("/all");
     }
   }
 
