@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import AfterHeader from "../AfterHeader/afterheader";
 import "./login.css";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -46,6 +47,9 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
           <h3>Forgot password?</h3>
+          <Link to="/register">
+            <h3>New User? Register</h3>
+          </Link>
           <p>
             Not your computer? Use Guest mode to sign in privately.
             <a href="https://support.google.com/chrome/answer/6130773?hl=en">

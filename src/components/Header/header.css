@@ -14,7 +14,7 @@
   border-radius: 2rem;
   border: 1px solid grey;
   padding: 0;
-  height: 5vh;
+  height: max-content;
   &:hover {
     cursor: pointer;
   }
@@ -83,4 +83,70 @@
 a {
   text-decoration: none;
   color: black;
+}
+
+@media (max-width: 1000px) {
+  .input-search {
+    margin-top: -1vh;
+
+    height: 4vh;
+  }
+  .input-search input {
+    height: 3vh;
+  }
+  .input-search button {
+    height: 4vh;
+  }
+  .voice-input {
+    margin-top: -1.7vh;
+    width: 5vw;
+  }
+  .voice-input button {
+    width: 4.5vw;
+  }
+  .voice-input img {
+    width: 2.7vw;
+  }
+  .sign-in img {
+    width: 3vw;
+  }
+  .sign-in {
+    margin-top: -1vh;
+    margin-left: -15vw;
+  }
+  .sign-in-button {
+    width: 13vw;
+    height: 3vh;
+  }
+}
+@media (max-width: 500px) {
+  .header-container {
+    margin-top: 9vh;
+  }
+  .input-search {
+    margin-left: -18vw;
+  }
+  .input-search input {
+    width: 50vw;
+    height: 3vh;
+  }
+  .input-search button {
+    width: 7vw;
+  }
+  .input-search img {
+    width: 4vw;
+  }
+  .voice-input img {
+    width: 4vw;
+  }
+  .voice-input button {
+    display: none;
+  }
+  .sign-in img:nth-of-type(1) {
+    display: none;
+  }
+  .sign-in-button {
+    width: 17vw;
+    margin-top: 0.3vh;
+  }
 }

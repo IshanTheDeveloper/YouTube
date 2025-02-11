@@ -50,5 +50,27 @@ const videoSchema = new mongoose.Schema({
   },
 });
 
-const videoModel = mongoose.model("Video", videoSchema);
-export default videoModel;
+export const videoModel = mongoose.model("Video", videoSchema);
+
+// Schema Definitions
+const userSchema = new mongoose.Schema({
+  firstname: String,
+  lastname: String,
+  email: String,
+  password: String,
+});
+
+export const User = mongoose.model("User", userSchema);
+
+const commentSchema = new mongoose.Schema({
+  commentData: { type: Object },
+});
+export const comment = mongoose.model("comment", commentSchema);
+
+// Define Schema for Channel
+const channelSchema = new mongoose.Schema({
+  username: { type: String },
+  userhandle: { type: String },
+});
+
+export const channel = mongoose.model("channel", channelSchema);

@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import "./sidebar.css";
 
 function Sidebar() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(true); // State to manage sidebar open/close
 
-  const toggleSidebar = () => setIsOpen(!isOpen);
+  const toggleSidebar = () => setIsOpen(!isOpen); // Function to toggle sidebar state
 
+  // Primary navigation items
   const primaryItems = [
     {
       name: "Home",
       icon: "https://cdn-icons-png.flaticon.com/128/1946/1946436.png",
-      link: "/home",
+      link: "/all",
     },
     {
       name: "Shorts",
@@ -24,6 +25,7 @@ function Sidebar() {
     },
   ];
 
+  // Explore section items
   const exploreItems = [
     {
       name: "Trending",
@@ -52,6 +54,7 @@ function Sidebar() {
     },
   ];
 
+  // Library section items
   const libraryItems = [
     {
       name: "History",
@@ -87,8 +90,13 @@ function Sidebar() {
 
   return (
     <div className="app-container">
-      <div className={`sidebar ${isOpen ? "open" : "closed"}`}>
-        {/* Fixed Header (Menu Button + Logo) */}
+      {/* Sidebar wrapper */}
+      <div
+        className={`sidebar ${isOpen ? "open" : "closed"} ${
+          !isOpen ? "sidebarEscape" : ""
+        }`}
+      >
+        {/* Sidebar header: Menu button and YouTube logo */}
         <button className="menu-button" onClick={toggleSidebar}>
           <img
             src="https://cdn-icons-png.flaticon.com/128/7710/7710488.png"
@@ -96,7 +104,6 @@ function Sidebar() {
             className="image1"
           />
           <a href="/home">
-            {" "}
             <div className="homepage-youtube-logo">
               <img
                 src="https://cdn-icons-png.flaticon.com/128/1384/1384060.png"
@@ -109,9 +116,9 @@ function Sidebar() {
           </a>
         </button>
 
-        {/* Scrollable Sidebar Content */}
+        {/* Sidebar content (scrollable) */}
         <div className="sidebar-content">
-          {/* Primary Navigation */}
+          {/* Primary navigation section */}
           <div className="menu-section">
             {primaryItems.map((item, index) => (
               <a href={item.link} key={index} className="menu-item">
@@ -121,7 +128,7 @@ function Sidebar() {
             ))}
           </div>
 
-          {/* Library Section */}
+          {/* Library section */}
           <div className="menu-section">
             <hr />
             <span className="section-title">
@@ -135,7 +142,7 @@ function Sidebar() {
             ))}
           </div>
 
-          {/* Explore Section - Moved Out */}
+          {/* Explore section */}
           <div className="menu-section">
             <hr />
             <span className="section-title">Explore</span>

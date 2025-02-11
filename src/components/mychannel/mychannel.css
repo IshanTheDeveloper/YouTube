@@ -85,3 +85,54 @@ body {
 .for-you {
   margin-left: 1vw;
 }
+.my-channel-video {
+  width: max-content;
+  height: 17vh;
+}
+.my-channel-video img {
+  width: 15vw;
+  &:hover {
+    cursor: pointer;
+    border-radius: 0.5rem;
+  }
+}
+.my-channel-video-title {
+  width: 15vw;
+  height: 10vh;
+}
+.my-channel-video-title h2 {
+  font-size: 1rem;
+}
+.my-channel-video-views {
+  width: 13vw;
+  display: flex;
+  gap: 0.5vw;
+}
+.my-channel-video-views span {
+  color: grey;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+.my-channel-video-card {
+  margin: 10px;
+  width: 15vw;
+}
+.my-channel-video-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 88vw;
+}
+.delete-button {
+  border: 1px solid black;
+  padding: 0.3rem;
+  font-weight: 600;
+
+  position: relative;
+  top: -3vh;
+  left: 77%;
+  z-index: 2;
+  &:hover {
+    border-radius: 0.3rem;
+    cursor: pointer;
+  }
+}

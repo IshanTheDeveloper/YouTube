@@ -10,7 +10,13 @@ function Videoplayer() {
   const [isOpen, setIsOpen] = useState(false);
   const [editableComments, setEditableComments] = useState({});
 
-  const toggleEscapeSidebar = () => setIsOpen(!isOpen);
+  // Toggle sidebar function
+  const toggleEscapeSidebar = () => {
+    setIsOpen((prev) => {
+      console.log("Toggling Sidebar:", !prev); // Debugging
+      return !prev;
+    });
+  };
 
   const handleEditComment = (videoIndex, commentIndex) => {
     setEditableComments((prev) => ({
@@ -37,6 +43,18 @@ function Videoplayer() {
     // Optionally, make an API call here to persist changes to the backend.
   };
 
+  const handleDeleteComment = (videoIndex, commentIndex) => {
+    setFiltered((prevFiltered) => {
+      const updatedData = [...prevFiltered];
+      if (updatedData[videoIndex]?.comments) {
+        updatedData[videoIndex].comments = updatedData[
+          videoIndex
+        ].comments.filter((_, index) => index !== commentIndex);
+      }
+      return updatedData;
+    });
+  };
+
   useEffect(() => {
     async function fetchData() {
       const response = await fetch("http://localhost:4000/videos");
@@ -54,6 +72,7 @@ function Videoplayer() {
       ))}
 
       <div className="app-container">
+        {/* Sidebar with toggle button */}
         <div className={`sidebarEscape ${isOpen ? "open" : "closed"}`}>
           <button className="menu-button" onClick={toggleEscapeSidebar}>
             <img
@@ -79,6 +98,7 @@ function Videoplayer() {
       {filtered.map((item) => (
         <VideoDisplayer
           key={item.id}
+          id={item.id}
           url={item.videoUrl}
           title={item.fullTitle}
           logo={item.videoOwnerLogo}
@@ -118,12 +138,12 @@ function Videoplayer() {
               <div className="comments-likes">
                 <img
                   src="https://cdn-icons-png.flaticon.com/128/126/126473.png"
-                  alt=""
+                  alt="Like"
                 />
                 <span>{comment.commentLike}</span>
                 <img
                   src="https://cdn-icons-png.flaticon.com/128/126/126504.png"
-                  alt=""
+                  alt="Dislike"
                 />
                 <span>{comment.commentDislikes}</span>
               </div>
@@ -142,6 +162,12 @@ function Videoplayer() {
                   Edit
                 </button>
               )}
+              <button
+                className="delete-btn"
+                onClick={() => handleDeleteComment(videoIndex, commentIndex)}
+              >
+                Delete
+              </button>
             </div>
           </div>
         ))

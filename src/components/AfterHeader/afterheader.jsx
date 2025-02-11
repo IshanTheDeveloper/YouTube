@@ -1,20 +1,68 @@
+import { useState, useEffect } from "react";
 import "./afterheader.css";
-import { Link } from "react-router-dom";
-function AfterHeader(props) {
-  // Retrieve the profile name from localStorage and provide a fallback
-  const storedName = localStorage.getItem("profileName") || "";
-  const displayName = props.name || storedName; // Use prop if available, fallback to stored name
+import { Link, useNavigate } from "react-router-dom";
+import Filtered from "../FilteredCategory/filtered";
 
-  // Safely extract the first character of displayName and default to empty if not available
+function AfterHeader(props) {
+  // Retrieve stored profile name from localStorage or default to an empty string
+  const storedName = localStorage.getItem("profileName") || "";
+  // Use prop name if available, otherwise fallback to storedName
+  const displayName = props.name || storedName;
+  // Get the first letter of the display name for profile icon
   const initialLetter = displayName ? displayName[0].toUpperCase() : "";
+  // Create a shortened channel name with a max of 5 characters
   const channelName = displayName.slice(0, 5) || "Guest";
+  // Generate a channel handle with a unique suffix
   const channelHandle = `@${displayName.slice(0, 7) || "guest"}8717`;
+
+  // State to store video data fetched from API
+  const [videoData, setVideoData] = useState([]);
+  // State to store search input value
+  const [searchTerm, setSearchTerm] = useState("");
+  // Hook for programmatic navigation
+  const navigate = useNavigate();
+
+  // Fetch video data on component mount
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch("http://localhost:4000/videos");
+        const data = await response.json();
+        setVideoData(data);
+      } catch (error) {
+        console.error("Error fetching video data:", error);
+      }
+    }
+    fetchData();
+  }, []);
+
+  // Function to filter videos based on search input and navigate to the filtered page
+  const handleFilter = () => {
+    if (searchTerm === " ") {
+      alert("Please input something to search");
+    } else {
+      alert("If search bar is empty all videos will be showed");
+      const filteredData = videoData.filter(
+        (item) =>
+          item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          item.category.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      console.log("Filtered Data Sent:", filteredData);
+      navigate("/filtered", { state: { data: filteredData } });
+    }
+  };
 
   return (
     <div className="header-container-area">
+      {/* Search Input Section */}
       <div className="input-search">
-        <input type="text" placeholder="Search" value={props.title} readOnly />
-        <button>
+        <input
+          type="text"
+          placeholder="Search"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <button onClick={handleFilter}>
           <img
             src="https://cdn-icons-png.flaticon.com/128/151/151773.png"
             alt="Search Icon"
@@ -22,6 +70,7 @@ function AfterHeader(props) {
         </button>
       </div>
 
+      {/* Voice Search Button */}
       <div className="voice-input">
         <button>
           <img
@@ -31,24 +80,27 @@ function AfterHeader(props) {
         </button>
       </div>
 
+      {/* User Profile and Actions Section */}
       <div className="sign-in-area">
         <Link to="/create">
-          {" "}
           <div className="create-in-button">
             <span>+</span>
             <p>Create</p>
           </div>
         </Link>
+        {/* Notification Icon */}
         <img
           src="https://cdn-icons-png.flaticon.com/128/1827/1827347.png"
           alt="Notification Icon"
           className="notification-icon"
         />
 
+        {/* Profile Dropdown Menu */}
         <div className="after-login-profile">
           <div className="dropdown">
             <span className="after-login-profile-photo">{initialLetter}</span>
             <div className="dropdown-content">
+              {/* User Channel Information */}
               <div className="channel-name">
                 <div className="channel-profile">
                   <span className="channel-profile-photo">{initialLetter}</span>
@@ -60,6 +112,7 @@ function AfterHeader(props) {
                 </div>
               </div>
               <hr />
+              {/* Account Options */}
               <div className="channel-profiles">
                 <img
                   src="https://cdn-icons-png.flaticon.com/128/104/104093.png"
@@ -82,6 +135,7 @@ function AfterHeader(props) {
                 <p>Sign out</p>
               </div>
               <hr />
+              {/* Additional Settings */}
               <div className="channel-profiles">
                 <img
                   src="https://cdn-icons-png.flaticon.com/128/15078/15078497.png"
@@ -126,6 +180,7 @@ function AfterHeader(props) {
                 <p>Keyboard shortcuts</p>
               </div>
               <hr />
+              {/* General Settings */}
               <div className="channel-profiles">
                 <img
                   src="https://cdn-icons-png.flaticon.com/128/503/503849.png"
@@ -151,6 +206,11 @@ function AfterHeader(props) {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Hidden Filtered Component to Render Filtered Data */}
+      <div className="hidden-container">
+        <Filtered data={videoData} />
       </div>
     </div>
   );
