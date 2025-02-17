@@ -26,6 +26,19 @@ function VideoDisplayer(props) {
     fetchData();
   }, []); // Dependency array is empty, so this runs only once when the component mounts
 
+  const [showComment, setshowComment] = useState("");
+  useEffect(() => {
+    async function getComments() {
+      const response = await fetch("http://localhost:4000/commentsData");
+      const commentData = await response.json();
+      const createdComment =
+        commentData[commentData.length - 1].commentData.comments;
+      setshowComment(createdComment[createdComment.length - 1]);
+      console.log(showComment);
+    }
+    getComments();
+  }, []);
+
   const handleComment = async () => {
     if (!filteredVideo.length) {
       alert("No video selected.");
@@ -170,9 +183,42 @@ function VideoDisplayer(props) {
         />
         <div className="add-comment-buttons">
           <button>Cancel</button>
-          <button onClick={handleComment}>Comment</button>
+          <a href="">
+            {" "}
+            <button onClick={handleComment}>Comment</button>
+          </a>
         </div>
       </div>
+      {/* Comment Section */}
+      {showComment && showComment.personComment && (
+        <div className="video-comments-cards">
+          <div className="comment-logo">
+            <img src={showComment.personLogo} alt="Commenter" />
+          </div>
+          <div className="comment-info">
+            <div className="comment-person">
+              <p>{showComment.personEmail}</p>
+              <p>Just now</p>
+            </div>
+            <div className="main-comment">
+              <p>{showComment.personComment}</p>
+            </div>
+            <div className="comments-likes">
+              <img
+                src="https://cdn-icons-png.flaticon.com/128/126/126473.png"
+                alt="Like"
+              />
+              <span>{showComment.commentLike}</span>
+              <img
+                src="https://cdn-icons-png.flaticon.com/128/126/126504.png"
+                alt="Dislike"
+              />
+              <span>{showComment.commentDislikes}</span>
+            </div>
+          </div>
+          <div className="show-new-comments1"></div>
+        </div>
+      )}
 
       {/* Video Suggestions */}
       <div className="video-suggestion-container">

@@ -91,6 +91,7 @@ body {
 }
 .my-channel-video img {
   width: 15vw;
+  height: 18vh;
   &:hover {
     cursor: pointer;
     border-radius: 0.5rem;
@@ -133,6 +134,31 @@ body {
   z-index: 2;
   &:hover {
     border-radius: 0.3rem;
+    cursor: pointer;
+  }
+}
+.no-channel-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30vh;
+  flex-direction: column;
+}
+.no-channel-message h2 {
+  background-color: rgb(128, 128, 128, 0.2);
+  padding: 2rem;
+  width: 20vw;
+  text-align: center;
+  font-weight: 600;
+  border: 2px solid black;
+}
+.no-channel-message a {
+  text-decoration: underline;
+  color: blue;
+  font-size: 1.1rem;
+  margin-top: -2vh;
+  &:hover {
+    color: red;
     cursor: pointer;
   }
 }

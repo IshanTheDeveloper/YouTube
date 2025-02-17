@@ -42,6 +42,7 @@
 }
 .channel-display-name {
   height: 10vh;
+  width: 12vw;
   padding-left: 0.5vw;
 }
 .channel-display-name p {
@@ -329,10 +330,10 @@
   justify-content: flex-start;
   align-items: center;
   gap: 0.4vw;
-  margin-top: 2vh;
+  margin-top: 1vh;
 }
 .suggestion-logo img {
-  width: 12vw;
+  width: 11vw;
   border-radius: 0.5rem;
 }
 .suggestion-info h4 {
@@ -340,10 +341,10 @@
   width: 19vw;
   font-size: 1rem;
   height: 5vh;
-  margin-top: -2vh;
+  margin-top: -1vh;
 }
 .suggestion-info p:nth-of-type(1) {
-  margin-top: 2vh;
+  margin-top: -2vh;
 }
 .suggestion-info p {
   margin-top: -1vh;

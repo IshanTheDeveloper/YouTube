@@ -1,6 +1,7 @@
-import { useMemo } from "react";
+import React, { useMemo, Suspense } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./filtered.css";
+import Sidebar from "../Sidebar/sidebar";
 
 function Filtered() {
   const location = useLocation(); // Hook to access the current route location
@@ -8,43 +9,31 @@ function Filtered() {
   // Memoize filtered videos from location state to prevent unnecessary re-renders
   const filteredVideos = useMemo(() => location.state?.data || [], [location]);
 
+  console.log("Filtered Videos:", filteredVideos);
+  console.log("Location State:", location.state);
+
   return (
     <div className="filtered-page">
-      {" "}
-      {/* Main page container */}
+      <Sidebar />
+
       <div className="filtered-content">
-        {" "}
-        {/* Content wrapper */}
         <div className="filtered-main-container">
-          {" "}
-          {/* Container for filtered video list */}
-          {filteredVideos.length > 0 ? ( // Check if there are filtered videos
+          {filteredVideos.length > 0 ? (
             filteredVideos.map((video) => (
               <Link to={`/all/${video.id}`} key={video.id}>
-                {" "}
-                {/* Link to video details */}
                 <div className="filtered-card1">
-                  {" "}
-                  {/* Video card */}
-                  <img src={video.thumbnail} alt={video.title} />{" "}
-                  {/* Video thumbnail */}
+                  <img src={video.thumbnail} alt={video.title} />
                   <div className="filter-card-info">
-                    {" "}
-                    {/* Video details section */}
                     <img
                       src={video.videoOwnerLogo}
                       alt={video.channelName}
                       className="channel-logo"
-                    />{" "}
-                    {/* Channel logo */}
+                    />
                     <div className="info-container">
-                      {" "}
-                      {/* Container for video info */}
-                      <h3>{video.title}</h3> {/* Video title */}
-                      <p>{video.channelName}</p> {/* Channel name */}
+                      <h3>{video.title}</h3>
+                      <p>{video.channelName}</p>
                       <p>
-                        {video.views} | {video.posted}{" "}
-                        {/* Views and posted time */}
+                        {video.views} | {video.posted}
                       </p>
                     </div>
                   </div>
@@ -52,7 +41,7 @@ function Filtered() {
               </Link>
             ))
           ) : (
-            <p>No matching videos found.</p> // Message if no videos match the filter
+            <p>No matching videos found.</p>
           )}
         </div>
       </div>

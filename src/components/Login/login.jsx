@@ -3,20 +3,40 @@ import AfterHeader from "../AfterHeader/afterheader";
 import "./login.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios"; // Ensure Axios is imported
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  function handleClick() {
-    if (email.trim() === "" || password.trim() === "") {
-      alert("Please fill all the empty spaces");
-    } else {
-      localStorage.setItem("profileName", email); // Save the email in localStorage
-      navigate("/all");
+  const handleClick = async () => {
+    try {
+      if (!email.trim() || !password.trim()) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      // **Login Request**
+      const response = await axios.post("http://localhost:4000/userLogin", {
+        email,
+        password,
+      });
+
+      // **Store Token & User Data**
+      localStorage.setItem("profileName", email);
+      localStorage.setItem("token", response.data.token);
+
+      alert(response.data.message);
+      navigate("/all"); // Redirect after login
+    } catch (error) {
+      alert(
+        error.response?.data?.message ||
+          "Login failed, User doesn't exist, Please signup or register."
+      );
+      navigate("/register");
     }
-  }
+  };
 
   return (
     <div className="login-page">
@@ -68,7 +88,6 @@ function Login() {
             <option value="en">English (United States)</option>
             <option value="es">Spanish</option>
             <option value="fr">French</option>
-            {/* Add more languages as needed */}
           </select>
         </div>
         <div className="help-items">
