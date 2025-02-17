@@ -45,6 +45,30 @@
   width: 12vw;
   padding-left: 0.5vw;
 }
+.comment-actions {
+  margin-left: 36vw;
+  width: 40%;
+  position: relative;
+  top: -7vh;
+  display: flex;
+  gap: 1vw;
+  justify-content: flex-end;
+}
+.comment-actions button {
+  background-color: rgb(128, 128, 128, 0.2);
+  width: 6vw;
+  padding: 0.3rem;
+  border-radius: 2rem;
+  border: none;
+  &:hover {
+    color: white;
+    background-color: black;
+  }
+}
+.main-comment input {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
 .channel-display-name p {
   font-weight: 490;
   font-size: 1.1rem;
@@ -422,6 +446,9 @@
   }
   .subscribe-button {
     margin-left: 7vw;
+  }
+  .channel-display-name {
+    width: 45vw;
   }
   .subscribe-button button {
     width: 20vw;

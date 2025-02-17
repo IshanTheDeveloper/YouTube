@@ -8,9 +8,13 @@
 
 --https://youtube-pied-ten.vercel.app/
 
+---
+
 ## Introduction
 
 This is a YouTube Clone project built using React.js ,Express.js and MongoDb. It provides users with the ability to see videos based on categories, search based on title and video owner, and watch videos where you also get the functionality to add the comments with the existing video in the database, as well as manage their profiles and create channels.
+
+---
 
 ## Features
 
@@ -24,12 +28,16 @@ This is a YouTube Clone project built using React.js ,Express.js and MongoDb. It
 - **Notifications**: A notification system for user activities.
 - **Dark Mode Support**: Toggle between light and dark themes.
 
+---
+
 ## Tech Stack
 
 - **Frontend**: React.js, React Router, CSS , local Storage
 - **State Management**: useState, useEffect
 - **Routing**: React Router , useNavigation
 - **API**: Fetching video data from a cloud server where data is stored in MongoDB Atlas
+
+---
 
 ## Steps to run the project (If Cloning from Github)
 
@@ -71,6 +79,8 @@ This is a YouTube Clone project built using React.js ,Express.js and MongoDb. It
    npm start
    ```
 
+---
+
 ## Project Structure
 
 ```
@@ -99,23 +109,30 @@ This is a YouTube Clone project built using React.js ,Express.js and MongoDb. It
 |   |-- styles
 ```
 
+---
+
 ## API Endpoints
 
+- Videos
+- Comments
+- Users
+- Channels
+
+## API Endpoints Requests
+
 - `GET /videos` - Fetch all video data
-- `GET /videos/:id` - Fetch a specific video
-- `POST /users` - User registration
-
-## Future Improvements
-
-- Implement a backend with a database for storing user data.
-- Add real-time comments and likes.
-- Improve UI and animations.
-- Enhance search with advanced filters.
-- Implement a video upload feature.
+- `GET /commentsData` - Fetch all Comments data
+- `GET /channelData` - Fetch all Channel data
+- `GET /userData` - Fetch all registered users data
+- `POST /savChannelData` - Send new created channel to database
+- `POST /saveComment` - Send new created comment to database along with the video
+- `POST /userLogin` - Log in the user based on jwt authentication
+- `POST /savUserInformation` - Sends the new registered user data to the database
+- `POST /generateToken` - Generated token for authentication
 
 ## Contributors
 
-- **[Your Name]** - Developer
+- **Ishan JAiswal** - Developer
 - **Open for Contributions** - Feel free to submit pull requests!
 
 ## License

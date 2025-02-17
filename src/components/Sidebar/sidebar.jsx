@@ -11,7 +11,7 @@ function Sidebar() {
     {
       name: "Home",
       icon: "https://cdn-icons-png.flaticon.com/128/1946/1946436.png",
-      link: "/home",
+      link: "/all",
     },
     {
       name: "Shorts",
