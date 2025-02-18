@@ -57,7 +57,7 @@ function VideoDisplayer(props) {
 
     filteredVideo[0].comments.push(currentComment);
     const commentData = filteredVideo[0];
-
+    window.location.reload();
     try {
       await axios.post("http://localhost:4000/saveComment", { commentData });
       alert("Comment added successfully");
